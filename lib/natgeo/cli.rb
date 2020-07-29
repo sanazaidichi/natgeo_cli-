@@ -5,58 +5,67 @@ module NatGeo
 
         def start
             line_spacing
-            puts "Welcome to this National Geographic gem!"
+            puts "---Welcome to this National Geographic gem!---"
+            Story.load_stories
+            stories 
+        end
+
+
+        def stories    
             line_spacing
             puts "These are the top picks of the day."
             line_spacing
-            collect_stories
+            list_stories
+            line_spacing
             pick_story
-            while @input != "exit"
-                if valid?
-        
-                else
-                    line_spacing
-                    puts "Oops, wrong entry! Please try again."
-                end 
-                pick_story
-                line_spacing
-            end
+            line_spacing
         end
 
-        
-        
-         def collect_stories
-            Story.load_stories
-            Story.list_stories 
-            
-         end 
 
-        def pick_story
-            line_spacing
-            puts "Chose an article by the number to read further."
-           input = gets.chomp.to_i 
-           
-            if !input.between?(1,10)
-                Story.find_users_choice(input).get_details
-                puts "Wrong entry! Please try again."
-                collect_stories 
-            elsif
-                
-                Story.find_users_choice(input).get_details
-                collect_Stories 
-                
-            else 
-                exit  
+        def list_stories 
+            Story.all.each.with_index(1) do |story, index|
+                puts "#{index}. #{story.title}."
             end 
         end 
 
-        def valid?
-            @input.to_i.between?(1, 10)
-          end
+        
+        def pick_story
+            line_spacing
+            puts "Chose an article by the number to read further."
+            line_spacing
+            input = gets.chomp.to_i 
+
+            if !input.between?(1,10)
+                puts "Wrong entry! Please try again."
+                line_spacing
+                list_stories
+                line_spacing
+                pick_story
+            elsif
+                Story.find_users_choice(input).get_details
+            end
+            choice 
+        end 
+
+
+        def choice 
+            puts "Would you like to keep reading or exit the program? Type read or exit"
+            input = gets.chomp
+            
+            if input  == "read"
+                list_stories
+                pick_story
+            elsif input == "exit"
+                exit 
+            else 
+                puts "Wrong entry! Please try again."
+                choice
+            end
+        end 
     
-          def line_spacing
+
+        def line_spacing
             puts ""
-          end 
+        end   
     end
-    
 end 

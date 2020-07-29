@@ -1,31 +1,10 @@
 #!/usr/bin/env ruby
 
 
-require "bundler/setup" #setting up load paths to require the gems in gemspec. #different from bundler require.  
+require "bundler/setup" 
 require "pry" 
 require_relative "../lib/natgeo" 
 
 NatGeo::CLI.new.start 
 
 
-
-
-
-#START HERE
-#line 1 - shabang
-#shabang - telling bash this is ruby.  exec files need to know to interpet the files as ruby. 
-#exec files run through the bash shell and need to be told this is a ruby file. 
-#will need the shabang to deploy gems. 
-
-
-#line 4 - require vs require_relative
-#require is a method that is used when you want to reference and execute code that is not 
-#written in your current file. The method takes in a path in the form of a string as 
-#an argument and there are two ways the string can be formatted — either as an
-#absolute path or a shortened name.
-#Listing your directory in $LOAD_PATH allows for flexibility and could load your external 
-#file even if you were to move it into a different folder. 
-#Each of these lines represents a directory on your computer where Ruby files are stored. 
-#If you use require anywhere in your application (e.g. require "digest") then Ruby will 
-#look for a Ruby file with the same name (e.g. digest.rb) in each of these directories. 
-#It will load the first file with this name that it can find.
