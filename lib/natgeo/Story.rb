@@ -28,11 +28,14 @@ module NatGeo
         def self.find_users_choice(input) 
             self.all[input.to_i-1]
         end 
+#checking the array to_i-1 
 
         def get_details
+            puts ""
             puts "TITLE: #{self.title}"
             puts "DESCRIPTION: #{self.description}."
             puts "FULL STORY URL: #{self.url}" 
+            puts ""
         end 
 
         def self.clear

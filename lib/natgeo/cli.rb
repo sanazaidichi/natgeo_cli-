@@ -3,69 +3,69 @@ require 'pry'
 module NatGeo
     class CLI 
 
-        def start
+        def start 
             line_spacing
-            puts "---Welcome to this National Geographic gem!---"
-            Story.load_stories
+            puts "WELCOME TO THIS NATIONAL GEOGRAPHIC GEM!"
+            Story.load_stories #makes the api call and display the list of top 10. 
             stories 
-        end
+        end 
+#only trying to make just one api call 
+#dont want to do to many api calls, discuss in blog. setup the loop for that purpose. 
 
-
-        def stories    
+        def stories
             line_spacing
-            puts "These are the top picks of the day."
-            line_spacing
+            puts "These are the top stories of the day!" 
+            line_spacing  
             list_stories
-            line_spacing
-            pick_story
-            line_spacing
-        end
-
-
-        def list_stories 
+            line_spacing 
+            pick_a_story
+        end 
+#this puts out all the top picks of the day and then shows off all of the stories
+#trying to use this for the loop 
+        def list_stories
             Story.all.each.with_index(1) do |story, index|
-                puts "#{index}. #{story.title}."
-            end 
+                puts "#{index}. #{story.title}"
+            end
         end 
 
-        
-        def pick_story
-            line_spacing
-            puts "Chose an article by the number to read further."
-            line_spacing
-            input = gets.chomp.to_i 
+        def pick_a_story
+            puts "Choose an article by the number to read further."
+            input = gets.chomp.to_i
 
             if !input.between?(1,10)
                 puts "Wrong entry! Please try again."
-                line_spacing
                 list_stories
-                line_spacing
-                pick_story
-            elsif
+                pick_a_story
+                # choice 
+            elsif 
                 Story.find_users_choice(input).get_details
             end
-            choice 
+            choice
         end 
 
 
-        def choice 
-            puts "Would you like to keep reading or exit the program? Type read or exit"
-            input = gets.chomp
-            
-            if input  == "read"
-                list_stories
-                pick_story
-            elsif input == "exit"
-                exit 
+        def choice #mini loop 
+            puts "Would you like to keep reading? Type read to keep going or no to exit."
+            input = gets.strip
+            if input == "read"
+              pick_a_story
+            elsif input == "no"
+              goodbye
+              exit 
             else 
-                puts "Wrong entry! Please try again."
-                choice
-            end
+              puts "Error, please try again with the correct entry."
+              choice
+            end 
+          end
+
+
+        def goodbye
+            puts "Thanks for reading! Goodbye!"
         end 
-    
+
 
         def line_spacing
             puts ""
-        end   
+        end 
     end
 end 
