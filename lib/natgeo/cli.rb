@@ -6,11 +6,9 @@ module NatGeo
         def start 
             line_spacing
             puts "WELCOME TO THIS NATIONAL GEOGRAPHIC GEM!"
-            Story.load_stories #makes the api call and display the list of top 10. 
-            stories 
+            Story.load_stories 
         end 
-#only trying to make just one api call 
-#dont want to do to many api calls, discuss in blog. setup the loop for that purpose. 
+
 
         def stories
             line_spacing
@@ -20,13 +18,14 @@ module NatGeo
             line_spacing 
             pick_a_story
         end 
-#this puts out all the top picks of the day and then shows off all of the stories
-#trying to use this for the loop 
+
+
         def list_stories
             Story.all.each.with_index(1) do |story, index|
                 puts "#{index}. #{story.title}"
             end
         end 
+
 
         def pick_a_story
             puts "Choose an article by the number to read further."
@@ -36,7 +35,6 @@ module NatGeo
                 puts "Wrong entry! Please try again."
                 list_stories
                 pick_a_story
-                # choice 
             elsif 
                 Story.find_users_choice(input).get_details
             end
@@ -44,7 +42,7 @@ module NatGeo
         end 
 
 
-        def choice #mini loop 
+        def choice
             puts "Would you like to keep reading? Type read to keep going or no to exit."
             input = gets.strip
             if input == "read"

@@ -13,6 +13,7 @@ module NatGeo
             JSON.parse(response.body)["articles"] 
         end    
             
+        
         def self.api_key
             begin 
                 @@key = File.open(File.expand_path("~/.news-api-key")).read.strip 
