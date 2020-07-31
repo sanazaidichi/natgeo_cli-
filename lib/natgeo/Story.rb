@@ -6,15 +6,13 @@ module NatGeo
 
         @@all = []
 
-        def initialize(attributes = {}) #setter getter method 
+        def initialize(attributes = {}) 
             attributes.each do |attribute_name, attribute_details|
             if self.respond_to?("#{attribute_name}=")
                 self.send(("#{attribute_name}="), attribute_details)
                 end
             end 
         end 
-#scopes
-#what is scope of local variable / global /instance /class 
 
         def self.load_stories 
             api_data = API.get_stories

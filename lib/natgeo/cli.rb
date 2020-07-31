@@ -22,7 +22,7 @@ module NatGeo
 
 
         def list_stories
-            Story.all.each.with_index(1) do |story, index| #params
+            Story.all.each.with_index(1) do |story, index| 
                 puts "#{index}. #{story.title}"
             end
         end 
