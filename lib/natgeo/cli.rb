@@ -7,6 +7,7 @@ module NatGeo
             line_spacing
             puts "WELCOME TO THIS NATIONAL GEOGRAPHIC GEM!"
             Story.load_stories 
+            stories 
         end 
 
 
@@ -21,7 +22,7 @@ module NatGeo
 
 
         def list_stories
-            Story.all.each.with_index(1) do |story, index|
+            Story.all.each.with_index(1) do |story, index| #params
                 puts "#{index}. #{story.title}"
             end
         end 
@@ -29,7 +30,7 @@ module NatGeo
 
         def pick_a_story
             puts "Choose an article by the number to read further."
-            input = gets.chomp.to_i
+            input = gets.strip.to_i
 
             if !input.between?(1,10)
                 puts "Wrong entry! Please try again."
@@ -42,10 +43,11 @@ module NatGeo
         end 
 
 
-        def choice
-            puts "Would you like to keep reading? Type read to keep going or no to exit."
+        def choice 
+            puts "Would you like to keep reading? Type 'read' to keep going or 'no' to exit."
             input = gets.strip
             if input == "read"
+              list_stories
               pick_a_story
             elsif input == "no"
               goodbye

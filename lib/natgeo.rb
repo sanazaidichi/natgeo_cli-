@@ -16,3 +16,5 @@ module NatGeo
   class Error < StandardError; end
   # Your code goes here...
 end 
+
+#anything to require should be in here 

@@ -8,12 +8,12 @@ module NatGeo
         URL = "https://newsapi.org/v2/top-headlines?sources=national-geographic&apiKey="
 
         def self.get_stories 
-            uri = URI.parse(URL+api_key)
+            uri = URI.parse(URL+api_key) 
             response = Net::HTTP.get_response(uri) #string 
             JSON.parse(response.body)["articles"] 
         end    
             
-        
+
         def self.api_key
             begin 
                 @@key = File.open(File.expand_path("~/.news-api-key")).read.strip 
